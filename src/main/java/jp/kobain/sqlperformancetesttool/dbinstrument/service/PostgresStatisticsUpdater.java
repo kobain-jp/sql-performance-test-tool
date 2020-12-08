@@ -6,22 +6,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("oracle")
-public class OracleStatisticsUpdater implements StatisticsUpdater {
+@Profile("postgres")
+public class PostgresStatisticsUpdater implements StatisticsUpdater {
 
 	private JdbcTemplate jdbcTemplate;
-	private final String SQL1 = "ANALYZE TABLE ";
-	private final String SQL2 = " COMPUTE STATISTICS";
+	private final String SQL = "ANALYZE";
 
 	@Autowired
-	public OracleStatisticsUpdater(JdbcTemplate jdbcTemplate) {
+	public PostgresStatisticsUpdater(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
 	public void update(String tableName) {
-		// can not use bind value because it leads grammar error by quoto
-		jdbcTemplate.update(SQL1 + tableName + SQL2);
+		jdbcTemplate.update(SQL);
 	}
 
 }

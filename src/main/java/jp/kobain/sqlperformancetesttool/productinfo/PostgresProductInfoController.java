@@ -10,14 +10,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
-@Profile("oracle")
 @Service
-public class OracleProductInfoCollector implements ProductInfoCollector {
+@Profile("postgres")
+public class PostgresProductInfoController implements ProductInfoCollector {
 
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public OracleProductInfoCollector(JdbcTemplate jdbcTemplate) {
+	public PostgresProductInfoController(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
@@ -28,19 +28,19 @@ public class OracleProductInfoCollector implements ProductInfoCollector {
 		productInfo.add("Product info ");
 		productInfo.add("----------------------------");
 		productInfo.add("----------------------------");
-		productInfo.addAll(jdbcTemplate.query("select * from v$version", new RowMapper<String>() {
+		productInfo.addAll(jdbcTemplate.query("SELECT version();", new RowMapper<String>() {
 			@Override
 			public String mapRow(ResultSet rs, int rowNum) throws java.sql.SQLException {
-				return rs.getString("BANNER");
+				return rs.getString(1);
 			};
 		}));
-
+		
 		productInfo.addAll(jdbcTemplate.query(
-				"select name, value from V$SYSTEM_PARAMETER where name = 'processes' or name='sessions'",
+				"SELECT name, setting FROM  pg_settings  where name ='max_connections' ",
 				new RowMapper<String>() {
 					@Override
 					public String mapRow(ResultSet rs, int rowNum) throws java.sql.SQLException {
-						return rs.getString("name") + ":" + rs.getString("VALUE");
+						return rs.getString("name") + ":" + rs.getString("setting");
 					};
 				}));
 		

@@ -1,6 +1,6 @@
-package jp.kobain.sqlperformancetesttool.sqlanalytics.service;
+package jp.kobain.sqlperformancetesttool.productinfo;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,22 +11,26 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class StatsCollectorTest {
+class PostgresProductInfoControllerTest {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	StatsCollector it;
+	PostgresProductInfoController it;
 
 	@BeforeEach
-	void setUp() throws Exception {
-		it = new StatsCollector(jdbcTemplate);
+	void setup() {
+		it = new PostgresProductInfoController(this.jdbcTemplate);
 	}
 
 	@Test
-	void test() {
-		List<String> stats = it.collect("14bhcqk4vwrf6");
-		stats.stream().forEach(e -> System.out.println(e));
+	void testCollect() {
+		try {
+			it.collect().stream().forEach(e -> System.out.println(e));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 }
