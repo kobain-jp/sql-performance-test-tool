@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+
+  postgre-example:
+    build: ./postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: develop
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+
+#  oracle-example:
+#    image: store/oracle/database-enterprise:12.2.0.1
+#    volumes:
+#      - ./oracle-example/data:/ORCL
+#    ports:
+#      - 1521:1521
+

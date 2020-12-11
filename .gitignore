@@ -38,3 +38,11 @@ out/
 
 ## Mac
 .DS_Store
+
+### docker
+/docker/postgres/data/
+
+### 
+/report/*
+
+/src

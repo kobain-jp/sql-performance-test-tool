@@ -21,6 +21,8 @@ public class SqlPerformanceTestToolAppRunner implements CommandLineRunner {
 	private int rampUpDurationMills;
 	@Value("${sptt.script-path}")
 	private String scriptPath;
+	@Value("${sptt.report-out-dir}")
+	private String reportOutDir;
 
 	private final SqlPerformanceTestTool sqlPerformanceTestTool;
 
@@ -33,7 +35,8 @@ public class SqlPerformanceTestToolAppRunner implements CommandLineRunner {
 
 		try {
 			sqlPerformanceTestTool.run(this.threadCount, this.loopCount, this.rampUpDurationMills,
-					ScriptUtils.readSqlScripts(this.scriptPath), ScriptUtils.readTableNames(this.scriptPath));
+					ScriptUtils.readSqlScripts(this.scriptPath), ScriptUtils.readTableNames(this.scriptPath),
+					this.reportOutDir);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

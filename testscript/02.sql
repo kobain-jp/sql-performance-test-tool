@@ -1,1 +1,1 @@
-select count(*) from book where rownum <= 1;
+select count (1) from book;

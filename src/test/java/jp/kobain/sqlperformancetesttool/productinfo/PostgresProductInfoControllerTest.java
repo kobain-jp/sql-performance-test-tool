@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import jp.kobain.sqlperformancetesttool.databaseinfo.PostgresProductInfoController;
+
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class PostgresProductInfoControllerTest {
@@ -26,7 +28,8 @@ class PostgresProductInfoControllerTest {
 	@Test
 	void testCollect() {
 		try {
-			it.collect().stream().forEach(e -> System.out.println(e));
+			it.collectConfigInfo().stream().forEach(e -> System.out.println(e));
+			it.collectProductInfo().stream().forEach(e -> System.out.println(e));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();

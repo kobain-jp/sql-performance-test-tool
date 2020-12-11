@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import jp.kobain.sqlperformancetesttool.util.SqlUniqueKeyCommentUtils;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class OracleSqIInstrumentor implements SqlInstrumentor {
 
@@ -15,10 +17,13 @@ public class OracleSqIInstrumentor implements SqlInstrumentor {
 
 		return sqls.stream().map(sql -> {
 
+			String instrumentedSql = sql;
 			if (sql.endsWith(";")) {
-				sql = sql.substring(0, sql.length() - 1);
+				instrumentedSql = sql.substring(0, sql.length() - 1);
 			}
-			return SqlUniqueKeyCommentUtils.appendUniqueKeyComment(sql);
+			instrumentedSql = SqlUniqueKeyCommentUtils.appendUniqueKeyComment(instrumentedSql);
+			log.info("instrumented:" + instrumentedSql);
+			return instrumentedSql;
 
 		}).collect(Collectors.toList());
 	}

@@ -1,6 +1,7 @@
 package jp.kobain.sqlperformancetesttool.sqlexecute;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import jp.kobain.sqlperformancetesttool.sqlexecute.model.ExecutionResult;
 import jp.kobain.sqlperformancetesttool.sqlexecute.service.AsyncSqlExecuter;
 import jp.kobain.sqlperformancetesttool.util.MapUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -23,34 +25,21 @@ public class SqlExecutor {
 
 	@Autowired
 	public SqlExecutor(AsyncSqlExecuter asyncSqlExecuter) {
-
 		this.asyncSqlExecuter = asyncSqlExecuter;
+	}
+
+	public ExecutionResult executeSingleSql(int threadCount, int loopCount, long rampUpDurationMills, String sql)
+			throws InterruptedException, DataAccessException, ExecutionException {
+
+		return executeSqls(threadCount, loopCount, rampUpDurationMills, Arrays.asList(new String[] { sql })).get(sql);
 
 	}
 
-	public void execute(int threadCount, int loopCount, long rampUpDurationMills, List<String> sqls)
-			throws InterruptedException, DataAccessException, ExecutionException {
+	public LinkedHashMap<String, ExecutionResult> executeSqls(int threadCount, int loopCount, long rampUpDurationMills,
+			List<String> sqls) throws InterruptedException, DataAccessException, ExecutionException {
 
-		log.info("----------------------------");
-		log.info("----------------------------");
-		log.info("SqlExecutor start");
-		log.info("----------------------------");
+		logInfoTestParameters(threadCount, loopCount, rampUpDurationMills);
 
-		log.info("----------------------------");
-		log.info("Test Parameter Information");
-		log.info("----------------------------");
-		log.info("ThreadCount:" + threadCount);
-		log.info("RampUp Duratin(ms):" + rampUpDurationMills);
-		log.info("LoopCount:" + loopCount);
-		log.info("----------------------------");
-		log.info("Execute SQL List");
-		log.info("----------------------------");
-		sqls.stream().forEach(e -> {
-			log.info(e);
-		});
-		log.info("----------------------------");
-		log.info("SQL Execution");
-		log.info("----------------------------");
 		Map<String, Long> totalExecutionTimePerSql = new LinkedHashMap<String, Long>();
 		for (int i = 0; i < loopCount; i++) {
 
@@ -69,16 +58,39 @@ public class SqlExecutor {
 
 		}
 
-		log.info("----------------------------");
-		log.info("Execution Result");
-		log.info("----------------------------");
-		for (String sql : sqls) {
-			log.info("SQL:" + sql);
-			log.info("Execution:" + loopCount * threadCount);
-			log.info("EXECUTION_TIME/EXECUTIONS:" + totalExecutionTimePerSql.get(sql) / loopCount);
-			log.info("");
-		}
+		return createExecutionResults(threadCount, loopCount, sqls, totalExecutionTimePerSql);
 
+	}
+
+	private LinkedHashMap<String, ExecutionResult> createExecutionResults(int threadCount, int loopCount,
+			List<String> sqls, Map<String, Long> totalExecutionTimePerSql) {
+
+		LinkedHashMap<String, ExecutionResult> results = new LinkedHashMap<String, ExecutionResult>();
+
+		for (String sql : sqls) {
+			int executionCount = loopCount * threadCount;
+			long averageExecutionTime = totalExecutionTimePerSql.get(sql) / loopCount;
+			results.put(sql, new ExecutionResult(sql, loopCount * threadCount, averageExecutionTime));
+
+			logExecutionResults(sql, executionCount, averageExecutionTime);
+
+		}
+		return results;
+	}
+
+	private void logExecutionResults(String sql, int executionCount, long averageExecutionTime) {
+		log.info("SqlExecutor - SQL:" + sql);
+		log.info("SqlExecutor - Execution:" + executionCount);
+		log.info("SqlExecutor - EXECUTION_TIME/EXECUTIONS:" + averageExecutionTime);
+	}
+
+	private void logInfoTestParameters(int threadCount, int loopCount, long rampUpDurationMills) {
+		log.info("----------------------------");
+		log.info("Test Parameter ");
+		log.info("----------------------------");
+		log.info("ThreadCount:" + threadCount);
+		log.info("RampUp Duratin(ms):" + rampUpDurationMills);
+		log.info("LoopCount:" + loopCount);
 	}
 
 	private List<CompletableFuture<Map<String, Long>>> runThreads(int threadCount, long rampUpDurationMills,
@@ -89,7 +101,7 @@ public class SqlExecutor {
 		List<CompletableFuture<Map<String, Long>>> completableFutureList = new ArrayList<CompletableFuture<Map<String, Long>>>();
 		for (int i = 0; i < threadCount; i++) {
 
-			completableFutureList.add(asyncSqlExecuter.execute(1, sqls));
+			completableFutureList.add(asyncSqlExecuter.executeSqls(1, sqls));
 			Thread.sleep(rampUpIntervalMills);
 
 		}

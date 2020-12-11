@@ -24,7 +24,7 @@ class SqlPerformanceTestToolTest {
 			List<String> sqls = ScriptUtils.readSqlScripts("./testscript");
 			List<String> tables = ScriptUtils.readTableNames("./testscript");
 
-			it.run(threadCount, loopCount, rampUpDurationMills, sqls, tables);
+			it.run(threadCount, loopCount, rampUpDurationMills, sqls, tables, ".");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
