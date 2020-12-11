@@ -14,7 +14,7 @@ This tool could do the followings.
 
 ### how to lunch
 
-1.configure application.properties
+1. configure application.properties
 
 ```
 # postgres
@@ -43,15 +43,15 @@ docker-compose up
 * check read me /docker/README.md
 
 
-2.create sql script to the path which is specified at sptt.script-path
+2. create sql script to the path which is specified at sptt.script-path
 
 *currently only select query is supported
 *sql script could have only one select query
 *you could check 01.sql as example
 
-3.execute SqlPerformanceTestToolApplication.java
+3. execute SqlPerformanceTestToolApplication.java
 
-4.check the report
+4. check the report
 
 the report is created for each sql script to the directory which you specified at sptt.report-out-dir
 [the report example is here](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
