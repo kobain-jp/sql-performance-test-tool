@@ -49,7 +49,9 @@ docker-compose up
 *sql script could have only one select query
 *you could check 01.sql as example
 
-### 3. execute SqlPerformanceTestToolApplication.java
+### 3. execute tool
+
+select jp.kobain.sqlperformancetesttool.SqlPerformanceTestToolApplication and Run As java application or Spring boot App
 
 ### 4. check the report
 
