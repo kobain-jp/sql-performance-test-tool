@@ -1,15 +1,19 @@
 ### How to lunch Postgres 
 
-Postgres spec
-- version:12
-- plugins:pg_stat_statements,pg_store_plans 
-
+remove the comment out for postgres in docker-compose.yml
 
 ```
 cd docker
-docker-comose up -d
+docker-comose up --build
 ```
 
-
-
 ### How to lunch Oracle
+
+remove the comment out for oracle in docker-compose.yml
+
+```
+cd docker
+docker-comose up --build
+```
+docker exec -it docker_oracle_12c /bin/bash 
+sh docker-entrypoint-initdb.d/init.sql

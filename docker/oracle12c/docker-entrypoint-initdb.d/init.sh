@@ -1,0 +1,1 @@
+sqlplus / as sysdba @/docker-entrypoint-initdb.d/init.sql
