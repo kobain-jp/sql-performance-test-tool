@@ -4,7 +4,9 @@ grant create session to developer;
 grant create table to developer;
 grant create sequence to developer;
 alter user developer quota unlimited on USERS;
-grant select on V_$INSTANCE TO developer;
+grant select on SYS.V_$SYSTEM_PARAMETER TO developer;
+grant select on SYS.V_$SQLSTATS TO developer;
+grant select on SYS.V_$SYSTEM_PARAMETER TO developer;
 
 conn developer/developer@ORCLPDB1;
 
