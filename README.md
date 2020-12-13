@@ -1,6 +1,8 @@
 # sql-performance-test-tool
 
-This tool is to measure sql performance on oracle/postgres
+This tool is to measure sql performance on oracle/postgres and create the report.
+
+[the report example is here](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
 
 This tool could do the followings.
 
@@ -10,9 +12,9 @@ This tool could do the followings.
 
 * it is similar to apache jmeter only for sql executing.
 
-### how to lunch
+## how to lunch
 
-1.configure application.properties
+### 1. configure application.properties
 
 ```
 # postgres
@@ -41,17 +43,20 @@ docker-compose up
 * check read me /docker/README.md
 
 
-2.create sql script to the path which is specified at sptt.script-path
+### 2. create sql script to the path which is specified at sptt.script-path
 
 *currently only select query is supported
+*sql script could have only one select query
 *you could check 01.sql as example
 
-3.execute SqlPerformanceTestToolApplication.java
+### 3. execute tool
 
-4.check the report
+select jp.kobain.sqlperformancetesttool.SqlPerformanceTestToolApplication and Run As java application or Spring boot App
 
-report is generatated to the directory which you specified at sptt.report-out-dir
+### 4. check the report
 
+the report is created for each sql script to the directory which you specified at sptt.report-out-dir
+[the report example is here](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
 
 
 
