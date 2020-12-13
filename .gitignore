@@ -40,7 +40,8 @@ out/
 .DS_Store
 
 ### docker
-/docker/postgres/data/
+/docker/postgres12/data/
+/docker/oracle12c/data/
 
 ### 
 /report/*
