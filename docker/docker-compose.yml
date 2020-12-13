@@ -2,7 +2,7 @@ version: "3.7"
 services:
 
 #  postgre12:
-#    container_name: postgre12
+#    container_name: docker_postgre_12
 #    build: ./postgres12
 #    ports:
 #      - 5432:5432
