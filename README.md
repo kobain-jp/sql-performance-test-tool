@@ -16,7 +16,7 @@ This tool could do the followings.
 
 * it is similar to apache jmeter only for sql executing.
 
-## how to lunch
+## how to lunch this tool
 
 ### 1. configure application.properties
 
@@ -37,15 +37,21 @@ sptt.report-out-dir=./report // directory for test result report
 ```
 
 * the above Postgres DB could be created by following command in this project if you have docker
-* if you use your own Postgres, need to install pg_stat_statement and pg_store_plans
-
-
 ```
 cd docker
 docker-compose up 
 ```
 * check read me /docker/README.md
 
+* if you use your own Postgres, need to install pg_stat_statement and pg_store_plans
+* if you use your own Oracle, need to grant followings to your test schema
+
+```
+grant select on SYS.V_$SYSTEM_PARAMETER TO developer;
+grant select on SYS.V_$SQLSTATS TO developer;
+grant select on SYS.V_$SQL TO developer;
+grant select on SYS.V_$SQL_PLAN TO developer;
+```
 
 ### 2. create sql script to the path which is specified at sptt.script-path
 
