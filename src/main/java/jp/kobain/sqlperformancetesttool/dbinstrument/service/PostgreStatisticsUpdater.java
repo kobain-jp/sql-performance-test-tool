@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Profile("postgres")
+@Profile("postgre")
 @Slf4j
-public class PostgresStatisticsUpdater implements StatisticsUpdater {
+public class PostgreStatisticsUpdater implements StatisticsUpdater {
 
 	private JdbcTemplate jdbcTemplate;
 	private final String SQL = "ANALYZE";
 
 	@Autowired
-	public PostgresStatisticsUpdater(JdbcTemplate jdbcTemplate) {
+	public PostgreStatisticsUpdater(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 

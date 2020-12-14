@@ -11,16 +11,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PostgresStatisticsUpdaterTest {
+class PostgreStatisticsUpdaterTest {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	PostgresStatisticsUpdater it;
+	PostgreStatisticsUpdater it;
 
 	@BeforeEach
 	void setup() {
-		it = new PostgresStatisticsUpdater(this.jdbcTemplate);
+		it = new PostgreStatisticsUpdater(this.jdbcTemplate);
 	}
 
 	@Test

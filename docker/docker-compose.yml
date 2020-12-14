@@ -1,23 +1,23 @@
 version: "3.7"
 services:
 
-#  postgre12:
-#    container_name: docker_postgre_12
-#    build: ./postgres12
-#    ports:
-#      - 5432:5432
-#    environment:
-#      POSTGRES_DB: develop
-#      POSTGRES_USER: developer
-#      POSTGRES_PASSWORD: developer
-#    volumes:
-#      - ./postgre12/data:/var/lib/postgresql/data
-
-  oracle12c:
-    build: ./oracle12c
-    container_name: docker_oracle_12c
-    volumes:
-      - ./oracle12c/data:/ORCL
+  postgre12:
+    container_name: docker_postgre_12
+    build: ./postgre12
     ports:
-      - 1521:1521
+      - 5432:5432
+    environment:
+      POSTGRES_DB: develop
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+    volumes:
+      - ./postgre12/data:/var/lib/postgresql/data
+
+#  oracle12c:
+#    build: ./oracle12c
+#    container_name: docker_oracle_12c
+#    volumes:
+#      - ./oracle12c/data:/ORCL
+#    ports:
+#      - 1521:1521
 

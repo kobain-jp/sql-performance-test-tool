@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import jp.kobain.sqlperformancetesttool.dbinstrument.service.PostgresStatsResetor;
+import jp.kobain.sqlperformancetesttool.dbinstrument.service.PostgreStatsResetor;
 import jp.kobain.sqlperformancetesttool.dbinstrument.service.StatisticsUpdater;
 
 @Component
@@ -13,9 +13,9 @@ import jp.kobain.sqlperformancetesttool.dbinstrument.service.StatisticsUpdater;
 public class PostgreDbInstrumentor implements DbInstrumentor {
 
 	private final StatisticsUpdater statisticsUpdater;
-	private final PostgresStatsResetor postgresStatsResetor;
+	private final PostgreStatsResetor postgresStatsResetor;
 
-	public PostgreDbInstrumentor(StatisticsUpdater statisticsUpdater, PostgresStatsResetor postgresStatsResetor) {
+	public PostgreDbInstrumentor(StatisticsUpdater statisticsUpdater, PostgreStatsResetor postgresStatsResetor) {
 		this.statisticsUpdater = statisticsUpdater;
 		this.postgresStatsResetor = postgresStatsResetor;
 	}
