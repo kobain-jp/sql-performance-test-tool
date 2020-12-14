@@ -3,7 +3,7 @@
 sql-performance-test-tool is a spring boot application to measure performance of sql execution on Oracle/Postgres and create report as followings.
 
 [Report for Postgres 12](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
-[Report for Oracle 12c](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-14-09:24:14.md)
+[Report for Oracle 12c](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-14-18:00:30.md)
 
 
 ## What can I do with it?
