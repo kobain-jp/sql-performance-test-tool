@@ -17,7 +17,7 @@ sql-performance-test-tool features include:
 
 ## Tutorial
 
-### 1. Database Requirements
+### 1. Configure Database 
 
 * Configured Database is available on /docker folder in this project
 
@@ -25,6 +25,8 @@ https://github.com/kobain-jp/sql-performance-test-tool/tree/master/docker
 
 Postgres:
 - pg_stat_statement and pg_store_plans
+https://www.postgresql.jp/document/12/html/pgstatstatements.html
+http://ossc-db.github.io/pg_store_plans/
 
 Oracle:
 - grant followings to test user
@@ -77,8 +79,6 @@ select jp.kobain.sqlperformancetesttool.SqlPerformanceTestToolApplication and Ru
 ### 5. check the report
 
 the report is created for each sql script to the directory which you specified at sptt.report-out-dir
-
-report example
 
 [Report for Postgres 12](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
 [Report for Oracle 12c](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-14-09:24:14.md)
