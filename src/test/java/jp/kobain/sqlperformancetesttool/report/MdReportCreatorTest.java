@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import freemarker.template.TemplateException;
 import jp.kobain.sqlperformancetesttool.databaseinfo.DatabaseInfoCollector;
-import jp.kobain.sqlperformancetesttool.databaseinfo.PostgreProductInfoController;
+import jp.kobain.sqlperformancetesttool.databaseinfo.PostgresProductInfoController;
 import jp.kobain.sqlperformancetesttool.sqlanalytics.SqlAnalyticsCollector;
 import jp.kobain.sqlperformancetesttool.sqlexecute.model.ExecutionResult;
 
@@ -37,7 +37,7 @@ class MdReportCreatorTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		it = new MdReportCreator();
-		productInfoCollector = new PostgreProductInfoController(jdbcTemplate);
+		productInfoCollector = new PostgresProductInfoController(jdbcTemplate);
 	}
 
 	@Test

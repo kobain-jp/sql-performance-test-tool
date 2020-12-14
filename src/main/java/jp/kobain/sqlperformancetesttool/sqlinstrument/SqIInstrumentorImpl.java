@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class OracleSqIInstrumentor implements SqlInstrumentor {
+public class SqIInstrumentorImpl implements SqlInstrumentor {
 
 	@Override
 	public List<String> instrument(List<String> sqls) {

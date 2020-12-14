@@ -10,15 +10,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("postgre")
-public class PostgreStatsCollector implements StatsCollector {
+@Profile("postgres")
+public class PostgresStatsCollector implements StatsCollector {
 
 	private JdbcTemplate jdbcTemplate;
 
 	private static final String SQL = "SELECT query,rows,calls,total_time,total_time/calls as average_time FROM pg_stat_statements WHERE queryid = ?";
 
 	@Autowired
-	public PostgreStatsCollector(JdbcTemplate jdbcTemplate) {
+	public PostgresStatsCollector(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 

@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import jp.kobain.sqlperformancetesttool.util.SqlUniqueKeyCommentUtils;
 
 @Service
-@Profile("postgre")
-public class PostgreSqlIdResolver implements SqlIdResolver {
+@Profile("postgres")
+public class PostgresSqlIdResolver implements SqlIdResolver {
 
 	private JdbcTemplate jdbcTemplate;
 	
 	private static final String SQL = "SELECT QUERYID FROM pg_stat_statements WHERE QUERY like '%'||?||'%'";
 
 	@Autowired
-	public PostgreSqlIdResolver(JdbcTemplate jdbcTemplate) {
+	public PostgresSqlIdResolver(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 

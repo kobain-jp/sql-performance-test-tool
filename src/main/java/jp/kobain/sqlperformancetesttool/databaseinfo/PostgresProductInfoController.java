@@ -11,15 +11,15 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("postgre")
-public class PostgreProductInfoController implements DatabaseInfoCollector {
+@Profile("postgres")
+public class PostgresProductInfoController implements DatabaseInfoCollector {
 
 	private JdbcTemplate jdbcTemplate;
 	private static String SQL_PRODUCT_INFO = "SELECT version();";
 	private static String SQL_CONFIG_INFO = "SELECT name, setting FROM  pg_settings  where name in ('max_connections','shared_buffers','effective_cache_size','work_mem,maintenance_work_mem','checkpoint_segments','checkpoint_completion_target','fsync,synchronous_commit','random_page_cost','effective_io_concurrency') ";
 
 	@Autowired
-	public PostgreProductInfoController(JdbcTemplate jdbcTemplate) {
+	public PostgresProductInfoController(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 

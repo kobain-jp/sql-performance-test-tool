@@ -16,11 +16,11 @@ class PostgreStatisticsUpdaterTest {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	PostgreStatisticsUpdater it;
+	PostgresStatisticsUpdater it;
 
 	@BeforeEach
 	void setup() {
-		it = new PostgreStatisticsUpdater(this.jdbcTemplate);
+		it = new PostgresStatisticsUpdater(this.jdbcTemplate);
 	}
 
 	@Test

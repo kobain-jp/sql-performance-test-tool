@@ -12,15 +12,15 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("postgre")
-public class PostgreExecutionPlanCollector implements ExecutionPlanCollector {
+@Profile("postgres")
+public class PostgresExecutionPlanCollector implements ExecutionPlanCollector {
 
 	private JdbcTemplate jdbcTemplate;
 
 	private static final String SQL = "select plan from pg_store_plans where queryid_stat_statements =?";
 
 	@Autowired
-	public PostgreExecutionPlanCollector(JdbcTemplate jdbcTemplate) {
+	public PostgresExecutionPlanCollector(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
