@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import jp.kobain.sqlperformancetesttool.databaseinfo.PostgresProductInfoController;
+import jp.kobain.sqlperformancetesttool.databaseinfo.PostgreProductInfoController;
 
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -18,11 +18,11 @@ class PostgresProductInfoControllerTest {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	PostgresProductInfoController it;
+	PostgreProductInfoController it;
 
 	@BeforeEach
 	void setup() {
-		it = new PostgresProductInfoController(this.jdbcTemplate);
+		it = new PostgreProductInfoController(this.jdbcTemplate);
 	}
 
 	@Test

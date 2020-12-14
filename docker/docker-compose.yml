@@ -11,7 +11,7 @@ services:
 #      POSTGRES_USER: developer
 #      POSTGRES_PASSWORD: developer
 #    volumes:
-#      - ./postgres12/data:/var/lib/postgresql/data
+#      - ./postgre12/data:/var/lib/postgresql/data
 
   oracle12c:
     build: ./oracle12c
