@@ -2,7 +2,10 @@
 
 This tool is to measure sql performance on oracle/postgres and create the report.
 
-[the report example is here](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
+report example 
+
+[Postgres 12](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-12-00:21:06.md)
+[Oracle 12c](https://github.com/kobain-jp/sql-performance-test-tool/blob/master/sptt-2020-12-14-09:24:14.md)
 
 This tool could do the followings.
 
